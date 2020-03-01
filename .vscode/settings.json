@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.pythonPath": "C:\\Users\\qndlf\\envs\\prography_6th_django_heowon\\Scripts\\python.exe"
+}
