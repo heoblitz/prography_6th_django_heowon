@@ -1,6 +1,8 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import AllowAny
 
 from .serializers import PostSerializer
 from .models import Posts
@@ -9,12 +11,16 @@ from django.http import JsonResponse
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([AllowAny,])
 def posts_list(request):
     # 게시글 리스트 조회
     if request.method == 'GET':
+        paginator = PageNumberPagination()
+        paginator.page_size = 5
         queryset = Posts.objects.all()
-        serializer = PostSerializer(queryset, many=True)
-        return Response(serializer.data)
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = PostSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     # 게시글 생성 
     elif request.method == 'POST':
