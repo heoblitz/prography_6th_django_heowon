@@ -26,7 +26,11 @@ urlpatterns = format_suffix_patterns([
 '''
 
 urlpatterns = format_suffix_patterns([
-    path('auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('posts/', views.posts_list, name='posts_list'),
+    path('posts/create/', views.post_create, name='post_create'),
     path('posts/<int:pk>/', views.posts_detail, name='posts_detail'),
+    path('auth/register/', views.register_api, name='register_api'),
+    path('auth/login/', views.login_api, name='login_api'),
+    path('auth/logout/', views.login_api, name='logout_api'),
+    path('auth/user/', views.user_status, name='user_status'),
 ])
