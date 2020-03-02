@@ -110,7 +110,6 @@ def login_api(request):
 #로그 아웃
 @api_view(['POST'])
 def logout_api(request):
-    
     request.user.auth_token.delete()
     return Response(status=status.HTTP_200_OK)
 
