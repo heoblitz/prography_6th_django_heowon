@@ -70,14 +70,38 @@ GET http://localhost:8000/api/posts/{id}/
 ```
 <br>
 
+### 게시글 추가하기
+
+```json
+POST http://localhost:8000/api/posts/create/
+
+HEAD
+KEY : Authorization
+VALUE : token "hashed 64 words"
+
+BODY {
+    "title": "heoheo",
+    "description": "TEST"
+}
+```
+```json
+{
+    "id": 105,
+    "title": "heoheo",
+    "description": "TEST",
+    "created_at": "2020-03-03T08:31:47.002780+09:00"
+}
+```
+<br>
+
 ### 가입하기
 
 ```json
 POST http://localhost:8000/api/auth/register/
 
 BODY {
-    "username" : "example",
-    "password" : "hihi"
+    "username": "example",
+    "password": "hihi"
 }
 ```
 ```json
@@ -111,7 +135,7 @@ BODY {
 ```
 <br>
 
-로그아웃
+### 로그아웃
 ```json
 POST http://localhost:8000/api/auth/logout/
 
@@ -126,5 +150,21 @@ if token is invaild
 
 {
     "detail": "토큰이 유효하지 않습니다."
+}
+```
+<br>
+
+### 접속 확인
+
+```
+POST http://localhost:8000/api/auth/user/
+
+HEAD
+KEY : Authorization
+VALUE : token "hashed 64 words"
+```
+```json
+{
+    "message": "인증 되었습니다."
 }
 ```

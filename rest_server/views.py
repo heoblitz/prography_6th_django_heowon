@@ -123,18 +123,3 @@ def user_status(request):
             "message" : "인증 되었습니다."
         }
     )
-
-'''
-class PostView(viewsets.ModelViewSet):
-    queryset = Posts.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-    
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    def get(requests):
-        user_count = Posts.objects.count()
-        count = {'count' : user_count}
-        return JsonResponse(count)
-'''
