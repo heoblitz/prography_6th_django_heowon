@@ -9,7 +9,7 @@ from .models import Posts
 
 from django.http import JsonResponse
 
-
+#FBV로 설계하였음
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny,])
 def posts_list(request):
@@ -33,6 +33,7 @@ def posts_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def posts_detail(request, pk):
+    # 요청이 들어오면 PK 객체를 찾는다.
     try:
         post = Posts.objects.get(pk=pk)
     except Posts.DoesNotExist:
