@@ -22,7 +22,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username")
 
 # 로그인
-
 class LoginUserSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
@@ -33,18 +32,15 @@ class LoginUserSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("login error")
 
-# 로그아웃
-
-#class LogoutUserSerializer(serializers.Serializer):
-
-
 # 게시글 CRUD
 class PostSerializer(serializers.ModelSerializer):
-    # user = UserSerializer(read_only=True)
+    author = serializers.SlugRelatedField(slug_field='username', read_only=True)
+
     class Meta:
         model = Posts
         fields = (
             'id',
+            'author',
             'title',
             'description',
             'created_at',
