@@ -5,7 +5,8 @@ Django를 이용한 REST API 개발
 ## 사용 기술 스택
 
 * Django 3.0.3
-* django-rest-knox
+* Django REST framework
+* Django-rest-knox
 * AWS EC2
 
 ## API 액세스 권한
