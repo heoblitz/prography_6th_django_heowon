@@ -50,7 +50,7 @@ def post_create(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated, AllowAny])
+@permission_classes([AllowAny])
 def posts_detail(request, pk):
     renderer_classess = [JSONRenderer]
     # 요청이 들어오면 PK 객체를 찾는다.

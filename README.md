@@ -6,6 +6,7 @@ Django를 이용한 REST API 개발
 
 * Django 3.0.3
 * django-rest-knox
+* AWS EC2
 
 ## API 액세스 권한
 
@@ -24,7 +25,7 @@ Django를 이용한 REST API 개발
 ### 게시글 리스트 받아오기
 
 ```json
-GET http://localhost:8000/api/posts/
+GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/posts/
 ```
 ```json
 {
@@ -70,7 +71,7 @@ GET http://localhost:8000/api/posts/
 ### 게시글 상세 조회하기
 
 ```json
-GET http://localhost:8000/api/posts/{id}/
+GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/{id}/
 ```
 ```json
 {
@@ -85,7 +86,7 @@ GET http://localhost:8000/api/posts/{id}/
 ### 게시글 추가하기
 
 ```json
-POST http://localhost:8000/api/posts/create/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/create/
 
 HEAD
 KEY : Authorization
@@ -106,10 +107,10 @@ BODY {
 ```
 <br>
 
-### 가입하기
+### 회원가입
 
 ```json
-POST http://localhost:8000/api/auth/register/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/register/
 
 BODY {
     "username": "example",
@@ -129,7 +130,7 @@ BODY {
 
 ### 로그인
 ```json
-POST http://localhost:8000/api/auth/login/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/login/
 
 BODY {
     "username" : "example",
@@ -149,7 +150,7 @@ BODY {
 
 ### 로그아웃
 ```json
-POST http://localhost:8000/api/auth/logout/
+POSThttp://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/logout/
 
 HEAD
 KEY : Authorization
@@ -169,7 +170,7 @@ if token is invaild
 ### 접속 확인
 
 ```
-POST http://localhost:8000/api/auth/user/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/user/
 
 HEAD
 KEY : Authorization
