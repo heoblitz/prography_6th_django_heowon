@@ -35,18 +35,20 @@ def posts_list(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     '''
 
+# 게시글 추가
 @api_view(['POST'])
 @permission_classes([IsAuthenticated,])
 def post_create(request):
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(author=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated, AllowAny])
 def posts_detail(request, pk):
     # 요청이 들어오면 PK 객체를 찾는다.
     try:
@@ -62,6 +64,12 @@ def posts_detail(request, pk):
     # 해당 PK 게시글 수정
     elif request.method == 'PUT':
         serializer = PostSerializer(post, data=request.data)
+
+        if(post.author != request.user):
+            return Response({
+                "message" : "수정 권한이 없습니다."
+            })
+        
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -70,14 +78,21 @@ def posts_detail(request, pk):
 
     # 해당 PK 게시글 삭제
     elif request.method == 'DELETE':
+        if(post.author != request.user):
+            return Response({
+                "message" : "삭제 권한이 없습니다."
+        })
+
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # 가입
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def register_api(request):
     serializer = CreatUserSerializer(data=request.data)
 
+    # 아이디는 5 ~ 12 자로 제한
     if len(request.data["username"]) < 5 or len(request.data["username"]) > 12:
         body = {"message" : "id available 5 ~ 11 word"}
         return Response(body, status=status.HTTP_400_BAD_REQUEST)
@@ -94,6 +109,7 @@ def register_api(request):
 
 # 로그인
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def login_api(request):
     serializer = LoginUserSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
@@ -109,6 +125,7 @@ def login_api(request):
 
 #로그 아웃
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def logout_api(request):
     request.user.auth_token.delete()
     return Response(status=status.HTTP_200_OK)
