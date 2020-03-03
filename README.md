@@ -26,43 +26,48 @@ Django를 이용한 REST API 개발
 ### 게시글 리스트 받아오기
 
 ```json
-GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/posts/
+GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/
 ```
 ```json
 {
-    "count": 101,
-    "next": "http://localhost:8000/api/posts/?page=2",
+    "count": 105,
+    "next": "http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/?page=2",
     "previous": null,
     "results": [
         {
-            "id": 4,
-            "title": "되는지 확인합니다",
-            "description": "ㅇㅇ",
-            "created_at": "2020-03-01T15:18:57.915240+09:00"
+            "id": 108,
+            "author": "heoheo",
+            "title": "heoheo",
+            "description": "zzzzzzz",
+            "created_at": "2020-03-03T09:37:35.878440+09:00"
         },
         {
-            "id": 5,
+            "id": 107,
+            "author": "heoheo",
+            "title": "heoheo",
+            "description": "zzzzzzz",
+            "created_at": "2020-03-03T09:20:37.981982+09:00"
+        },
+        {
+            "id": 106,
+            "author": null,
+            "title": "heoheo",
+            "description": "zzzzzzz",
+            "created_at": "2020-03-03T09:19:34.745764+09:00"
+        },
+        {
+            "id": 105,
+            "author": "111111",
+            "title": "11111",
+            "description": "made by 11111",
+            "created_at": "2020-03-03T08:31:47.002780+09:00"
+        },
+        {
+            "id": 104,
+            "author": null,
             "title": "post test",
-            "description": "it is work?",
-            "created_at": "2020-03-01T20:59:09.059510+09:00"
-        },
-        {
-            "id": 6,
-            "title": "put a",
-            "description": "aa",
-            "created_at": "2020-03-02T12:33:08.422534+09:00"
-        },
-        {
-            "id": 7,
-            "title": "python7",
-            "description": "7's contents",
-            "created_at": "2020-03-02T12:35:52.917636+09:00"
-        },
-        {
-            "id": 8,
-            "title": "python8",
-            "description": "8's contents",
-            "created_at": "2020-03-02T12:35:54.954146+09:00"
+            "description": "yeah~",
+            "created_at": "2020-03-02T19:25:37.311050+09:00"
         }
     ]
 }
@@ -77,6 +82,7 @@ GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/{id
 ```json
 {
     "id": 5,
+    "author": null,
     "title": "post test",
     "description": "it is work?",
     "created_at": "2020-03-01T20:59:09.059510+09:00"
@@ -94,16 +100,17 @@ KEY : Authorization
 VALUE : token "hashed 64 words"
 
 BODY {
-    "title": "heoheo",
-    "description": "TEST"
+    "title": "hello guys",
+    "description": "it is TEST"
 }
 ```
 ```json
 {
-    "id": 105,
-    "title": "heoheo",
-    "description": "TEST",
-    "created_at": "2020-03-03T08:31:47.002780+09:00"
+    "id": 110,
+    "author": "new_person",
+    "title": "hello guys",
+    "description": "it is TEST",
+    "created_at": "2020-03-03T13:49:18.030282+09:00"
 }
 ```
 <br>
@@ -111,7 +118,7 @@ BODY {
 ### 회원가입
 
 ```json
-POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/register/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/register/
 
 BODY {
     "username": "example",

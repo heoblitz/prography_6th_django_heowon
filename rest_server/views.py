@@ -104,6 +104,7 @@ def register_api(request):
 @permission_classes([AllowAny])
 def login_api(request):
     serializer = LoginUserSerializer(data=request.data)
+    #serializer.is_valid(raise_exception=True)
     serializer.is_valid(raise_exception=True)
 
     user = serializer.validated_data

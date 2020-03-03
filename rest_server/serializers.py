@@ -5,16 +5,25 @@ from django.contrib.auth import authenticate, logout
 
 # 회원가입
 class CreatUserSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
-    
-    def craete(self, validated_data):
-        user = User.objects.create_user(
-            validated_data["username"], None, validated_data["password"]
-        )
+        fields = ('id', 'username', 'email', 'password')
+
+    def create(self, validated_data):
+        user = User(username=validated_data['username'])
+        user.set_password(validated_data['password'])
+        user.save()
         return user
 
+    ''' # this method password not hashed
+    def craete(self, validated_data):
+        user = User.objects.create_user(
+            validated_data["username"], None, None, validated_data["password"]
+        )
+        return user
+    '''
+    
 # 접속확인
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
