@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.renderers import JSONRenderer
 from knox.models import AuthToken
 
 from .serializers import PostSerializer, CreatUserSerializer, UserSerializer, LoginUserSerializer
@@ -15,6 +16,7 @@ from django.http import JsonResponse
 @permission_classes([AllowAny,])
 #@permission_classes([IsAuthenticated,])
 def posts_list(request):
+    renderer_classess = [JSONRenderer]
     # 게시글 리스트 조회
     if request.method == 'GET':
         paginator = PageNumberPagination()
@@ -50,6 +52,7 @@ def post_create(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated, AllowAny])
 def posts_detail(request, pk):
+    renderer_classess = [JSONRenderer]
     # 요청이 들어오면 PK 객체를 찾는다.
     try:
         post = Posts.objects.get(pk=pk)
