@@ -30,44 +30,44 @@ GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/
 ```
 ```json
 {
-    "count": 105,
+    "count": 101,
     "next": "http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/?page=2",
     "previous": null,
     "results": [
         {
-            "id": 108,
-            "author": "heoheo",
-            "title": "heoheo",
-            "description": "zzzzzzz",
-            "created_at": "2020-03-03T09:37:35.878440+09:00"
+            "id": 210,
+            "author": "heoblitz",
+            "title": "my first posts!",
+            "description": "amazing",
+            "created_at": "2020-03-03T16:06:28.447788+09:00"
         },
         {
-            "id": 107,
-            "author": "heoheo",
-            "title": "heoheo",
-            "description": "zzzzzzz",
-            "created_at": "2020-03-03T09:20:37.981982+09:00"
+            "id": 209,
+            "author": "steve",
+            "title": "100's title",
+            "description": "100's contents",
+            "created_at": "2020-03-03T16:00:01.324205+09:00"
         },
         {
-            "id": 106,
-            "author": null,
-            "title": "heoheo",
-            "description": "zzzzzzz",
-            "created_at": "2020-03-03T09:19:34.745764+09:00"
+            "id": 208,
+            "author": "steve",
+            "title": "99's title",
+            "description": "99's contents",
+            "created_at": "2020-03-03T15:59:59.287534+09:00"
         },
         {
-            "id": 105,
-            "author": "111111",
-            "title": "11111",
-            "description": "made by 11111",
-            "created_at": "2020-03-03T08:31:47.002780+09:00"
+            "id": 207,
+            "author": "steve",
+            "title": "98's title",
+            "description": "98's contents",
+            "created_at": "2020-03-03T15:59:57.264696+09:00"
         },
         {
-            "id": 104,
-            "author": null,
-            "title": "post test",
-            "description": "yeah~",
-            "created_at": "2020-03-02T19:25:37.311050+09:00"
+            "id": 206,
+            "author": "steve",
+            "title": "97's title",
+            "description": "97's contents",
+            "created_at": "2020-03-03T15:59:55.237856+09:00"
         }
     ]
 }
@@ -81,11 +81,11 @@ GET http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/posts/{id
 ```
 ```json
 {
-    "id": 5,
-    "author": null,
-    "title": "post test",
-    "description": "it is work?",
-    "created_at": "2020-03-01T20:59:09.059510+09:00"
+    "id": 130,
+    "author": "steve",
+    "title": "21's title",
+    "description": "21's contents",
+    "created_at": "2020-03-03T15:57:21.148809+09:00"
 }
 ```
 <br>
