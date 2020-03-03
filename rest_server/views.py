@@ -21,21 +21,10 @@ def posts_list(request):
     if request.method == 'GET':
         paginator = PageNumberPagination()
         paginator.page_size = 5
-        queryset = Posts.objects.all()
+        queryset = Posts.objects.all().order_by('-created_at')
         result_page = paginator.paginate_queryset(queryset, request)
         serializer = PostSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
-
-    '''
-    # 게시글 생성 
-    elif request.method == 'POST':
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    '''
 
 # 게시글 추가
 @api_view(['POST'])

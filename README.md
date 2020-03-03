@@ -151,7 +151,7 @@ BODY {
 
 ### 로그아웃
 ```json
-POSThttp://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/logout/
+POST http://ec2-13-125-237-249.ap-northeast-2.compute.amazonaws.com/api/auth/logout/
 
 HEAD
 KEY : Authorization
