@@ -23,6 +23,7 @@ Django를 이용한 REST API 개발
 
     * username : steve
     * password : 1234
+* 서버는 비용 문제로 종료하였습니다.
 
 ### 
 
